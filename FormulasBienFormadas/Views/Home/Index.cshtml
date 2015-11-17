@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Fórmulas bien formadas";
+}
+<section ng-controller="FbfController">
+    <h2>@ViewBag.Title</h2>
+
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <input type="text" name="Formula" ng-model="line" class="form-control" />
+        </div>
+
+    </div>
+    <div class="row margin-top">
+        <div class="col-sm-8 col-sm-offset-2">
+            <button type="button" class="btn btn-primary pull-right"  ng-click="analizar()">Analizar</button>
+            <a href="@Url.Action("Gramatica")" class="pull-right margin-top margin-right" target="_blank" >Gram&aacute;ica</a>
+        </div>
+    </div>
+    <div class="row margin-top" ng-show="esFBF">
+        <div class="col-sm-8 col-sm-offset-2 ">
+            <div class="alert alert-success" >
+                F&oacute;rmula Bien Formada
+            </div>
+        </div>
+    </div>
+    <div class="row margin-top">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="alert alert-warning" ng-repeat="e in dataErrors">
+                {{e.Line}}:{{e.Column}} - {{e.Message}}
+            </div>
+        </div>
+    </div>
+</section>
