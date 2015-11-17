@@ -22,7 +22,7 @@ namespace FrankCompiler.Core
         {
             NextToken();
             Expresion();
-            if(t.Type != TokenType.NoToken)
+            if (t.Type != TokenType.NoToken)
                 AddError("No se esperaban mas tokens", t);
         }
 
@@ -34,7 +34,8 @@ namespace FrankCompiler.Core
                 NextToken();
                 AddError("Se esperaba una expresión", t);
             }
-            else if (t.Type == TokenType.NoToken) {
+            else if (t.Type == TokenType.NoToken)
+            {
                 AddError("Se esperaba una expresión", t);
             }
             else
@@ -73,8 +74,9 @@ namespace FrankCompiler.Core
                     NextToken();
                     Expresion();
                 }
-                else if (t.Type == TokenType.OpRela) {
-                     NextToken();
+                else if (t.Type == TokenType.OpRela)
+                {
+                    NextToken();
                     Expresion();
                 }
             }
@@ -145,7 +147,6 @@ namespace FrankCompiler.Core
         }
         void Comparacion()
         {
-            Termino();
             if (t.Type != TokenType.OpRela)
             {
                 AddError("Se esperaba operador de comparacion", t);
@@ -155,7 +156,11 @@ namespace FrankCompiler.Core
         }
         void Atomo()
         {
-            if (EsVariable(t)) Comparacion();
+            if (EsVariable(t)) {
+                NextToken();
+                if(t.Type == TokenType.OpRela)
+                    Comparacion();
+            }
             else if (t.Type == TokenType.Identi)
             {
                 NextToken();
@@ -167,12 +172,12 @@ namespace FrankCompiler.Core
                 }
                 else
                 {
-                    if (t.Type != TokenType.OpRela)
-                    {
-                        AddError("Se esperaba paréntesis u operador de comparacion", t);
-                    }
-                    idx -= 2;
-                    NextToken();
+                    //if (t.Type != TokenType.OpRela)
+                    //{
+                    //    AddError("Se esperaba paréntesis u operador de comparacion", t);
+                    //}
+                    //idx -= 2;
+                    //NextToken();
                     Comparacion();
                 }
             }
