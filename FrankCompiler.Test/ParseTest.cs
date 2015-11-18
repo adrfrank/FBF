@@ -12,11 +12,11 @@ namespace FrankCompiler.Test
         public void VariasPruebas()
         {
             ParseTestFunc("@X m(X)");
-            ParseTestFunc("@X Y(X)", 1);
+            ParseTestFunc("@X Y(X)", 2);
             ParseTestFunc("~#X ( s(X) & n(X) & c(X) )");
             ParseTestFunc("@X( ~( s(X) & n(X) ) | ~c(X) ) = @X(s(X)&n(X)->~c(X))");
             ParseTestFunc("", 1);
-            ParseTestFunc("~#X ( X )"); // se defasan los errores
+            ParseTestFunc("~#X ( X )",3); // se defasan los errores
             ParseTestFunc("@X(s(X)&n(X)->g(X))");
             ParseTestFunc("@X(g(X)->~c(X))");
             ParseTestFunc("#X~(~g(X)|~c(X))");
@@ -31,11 +31,11 @@ namespace FrankCompiler.Test
             ParseTestFunc("3", 1);
             ParseTestFunc("@X#Y n(X,Y)");
             ParseTestFunc("@X#Y ", 1);
-            ParseTestFunc("X");
-            ParseTestFunc("X | Y -> Z");
-            ParseTestFunc("X -> Z");
-            ParseTestFunc("X  Z",1);
-            ParseTestFunc("P & ~Q -> R");
+            ParseTestFunc("X",2);
+            ParseTestFunc("X | Y -> Z",3);
+            ParseTestFunc("X -> Z",1);
+            ParseTestFunc("X  Z",2);
+            ParseTestFunc("~(P < Q) -> c(R)");
 
 
         }

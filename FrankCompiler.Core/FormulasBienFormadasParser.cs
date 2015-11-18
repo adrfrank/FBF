@@ -156,10 +156,10 @@ namespace FrankCompiler.Core
         }
         void Atomo()
         {
-            if (EsVariable(t)) {
+            if (EsVariable(t))
+            {
                 NextToken();
-                if(t.Type == TokenType.OpRela)
-                    Comparacion();
+                Comparacion();
             }
             else if (t.Type == TokenType.Identi)
             {
